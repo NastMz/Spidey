@@ -97,3 +97,12 @@ DOWNLOAD_HANDLERS = {
     "https": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
 }
 
+LOG_LEVEL = "INFO"
+
+# PLAYWRIGHT_BROWSER_TYPE = "firefox"
+#
+# PLAYWRIGHT_DEFAULT_NAVIGATION_TIMEOUT = 60 * 1000  # 1 minute
+#
+# PLAYWRIGHT_LAUNCH_OPTIONS = {
+#     "headless": False
+# }

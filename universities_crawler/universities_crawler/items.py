@@ -7,6 +7,7 @@ import scrapy
 
 
 class UniversitiesCrawlerItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+    university = scrapy.Field()
+    title = scrapy.Field()
+    content = scrapy.Field()
+    country = scrapy.Field()

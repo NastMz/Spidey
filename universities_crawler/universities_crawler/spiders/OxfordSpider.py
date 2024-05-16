@@ -3,50 +3,74 @@ from pathlib import Path
 import scrapy
 from scrapy_playwright.page import PageMethod
 
+from universities_crawler.items import UniversitiesCrawlerItem
+
 
 class OxfordSpider(scrapy.Spider):
     name = "oxford"
-    allowed_domains = ["ox.ac.uk"]
-    start_urls = ["https://www.ox.ac.uk/search"]
 
     def start_requests(self):
         # Submit the search form using Playwright
         yield scrapy.Request(
-            url=self.start_urls[0],
-            meta={
-                "playwright": True,
-                "playwright_page_methods": [
-                    # wait the page to fully load
-                    PageMethod("wait_for_load_state", "networkidle"),
-                    # accept the cookie policy
-                    PageMethod("click", "button#ccc-notify-accept"),
-                    # fill in the search
-                    PageMethod("fill", "input[name='search']", "digital transformation"),
-                    # click submit button
-                    PageMethod("click", "button.gsc-search-button"),
-                    # wait for an element on the reidrect page
-                    PageMethod("wait_for_selector", "div.gsc-expansionArea"),
-                    # PageMethod("evaluate", 'document.querySelectorAll(".gsc-cursor-page").forEach(x=>x.click())')
+            url="https://staff.admin.ox.ac.uk/digital-transformation",
+            meta=dict(
+                playwright=True,
+                playwright_include_page=True,
+                playwright_page_methods=[
+                    PageMethod("wait_for_selector", "button#ccc-recommended-settings"),
+                    PageMethod("click", "button#ccc-recommended-settings"),
+                    PageMethod("wait_for_selector", "#main-content"),
+                    PageMethod("wait_for_selector", "#listing-wrapper-4186581")
                 ],
-            }
+                errback=self.errback,
+            )
         )
 
-    def parse(self, response, **kwargs):
-        for item in response.css('a.gs-title'):
-            url = item.css("::attr(href)").get()
-            title = ''.join(item.css("::text").getall()).lower()
-            if url:
-                yield scrapy.Request(url, callback=self.save_html, cb_kwargs={'title': title})
+    async def parse(self, response, **kwargs):
+        page = response.meta["playwright_page"]
+        await page.close()
 
-    def save_html(self, response, title):
-        # Define folder paths
-        file_name = f"{title}.html"
-        folder_path = Path(f"crawled_files/{self.name}")
+        page_content = response.css("#main-content, .main-content")
 
-        # Create folders if they don't exist
-        folder_path.mkdir(parents=True, exist_ok=True)
+        if page_content:
+            self.logger.info(f"Crawling: {response.url}")
 
-        # Save the HTML content
-        with open(folder_path / file_name, "wb") as f:
-            f.write(response.body)
-        print(f"Saved HTML to: {folder_path / file_name}")
+            title = page_content.css('h1::text').get()
+
+            content = page_content.css('.paragraphs-items ::text').getall()
+
+            cleaned_content = [text.strip().replace(' ', ' ').lower() for text in
+                               content]  # Remove leading/trailing whitespace and non-breaking spaces
+
+            if 'digital transformation' in ' '.join(cleaned_content):
+                data = UniversitiesCrawlerItem(university="University of Oxford", country="United Kingdom")
+
+                data['title'] = title
+
+                data['content'] = ' '.join(cleaned_content)
+
+                yield data
+                urls = page_content.css('.paragraphs-items').css("a::attr(href)").getall()
+                for url in urls:
+                    if url.lower().startswith("http"):
+                        subpage_url = url
+                    elif url.startswith("#") or url.startswith("?"):
+                        subpage_url = response.url + url
+                    else:
+                        subpage_url = "https://staff.admin.ox.ac.uk" + url
+
+                    yield scrapy.Request(
+                        url=subpage_url,
+                        meta=dict(
+                            playwright=True,
+                            playwright_include_page=True,
+                            playwright_page_methods=[
+                                PageMethod("wait_for_selector", "#main-content, .main-content")
+                            ],
+                            errback=self.errback,
+                        )
+                    )
+
+    async def errback(self, failure):
+        page = failure.request.meta["playwright_page"]
+        await page.close()
