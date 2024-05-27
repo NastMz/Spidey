@@ -14,3 +14,5 @@ df = pd.concat([json_data, pdf_data], ignore_index=True)
 
 print(f"Número de registros: {df.shape[0]}")
 print(f"Universidades: \n{df['university'].unique()}")
+
+df.to_csv('universities_data.csv', index=False)
