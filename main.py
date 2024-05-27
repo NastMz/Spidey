@@ -4,6 +4,7 @@ from data_analysis.data import load_json_data, load_pdf_data
 
 university_pdf_dict = {
     'nacional': {'name': 'Universidad Nacional de Colombia', 'country': 'Colombia'},
+    'andes': {'name': 'Universidad de los Andes', 'country': 'Colombia'},
     # Add more universities as needed
 }
 
