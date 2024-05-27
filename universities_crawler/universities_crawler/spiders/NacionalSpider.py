@@ -86,9 +86,6 @@ class NacionalSpider(scrapy.Spider):
 
         page_content = response.css(".article-detail-layout-first")
 
-        import pdb
-        pdb.set_trace()
-
         if page_content:
             self.logger.info(f"Scraping: {response.url}")
 
