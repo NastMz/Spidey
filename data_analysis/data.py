@@ -1,7 +1,9 @@
 import pandas as pd
 import os
+import pdfplumber
 
-def load_data(folder_path):
+
+def load_json_data(folder_path):
     files = os.listdir(folder_path)
     df = pd.DataFrame()
 
@@ -12,3 +14,37 @@ def load_data(folder_path):
             df = pd.concat([df, data], ignore_index=True)
 
     return df
+
+
+def load_pdf_data(folder_path, university_dict):
+    data_list = []
+
+    for root, dirs, files in os.walk(folder_path):
+        for file in files:
+            if file.endswith('.pdf'):
+                file_path = os.path.join(root, file)
+                try:
+                    print(f"Processing file {file_path}")
+                    with pdfplumber.open(file_path) as pdf:
+                        content = ""
+                        for page in pdf.pages:
+                            content += page.extract_text() or ""
+                    # Extract the university short name from the folder path
+                    university_short_name = os.path.basename(root)
+                    # Get the full university name and country from the dictionary
+                    university_info = university_dict.get(university_short_name,
+                                                          {'name': university_short_name, 'country': ''})
+                    # Collect the data
+                    data_list.append({
+                        'university': university_info['name'],
+                        'title': '',  # Title extraction is not handled in this snippet
+                        'content': content,
+                        'country': university_info['country']
+                    })
+                except Exception as e:
+                    print(f"Error processing file {file_path}: {e}")
+
+    # Convert the list of dictionaries to a DataFrame
+    data = pd.DataFrame(data_list, columns=['university', 'title', 'content', 'country'])
+
+    return data
