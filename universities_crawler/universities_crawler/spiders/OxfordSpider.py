@@ -25,6 +25,9 @@ class OxfordSpider(scrapy.Spider):
                     PageMethod("wait_for_selector", "div.gsc-expansionArea"),
                 ],
                 errback=self.errback,
+                playwright_context_kwargs=dict(
+                    ignore_https_errors=True,
+                )
             ),
             callback=self.parse_search_page
         )
@@ -42,6 +45,9 @@ class OxfordSpider(scrapy.Spider):
                     playwright=True,
                     playwright_include_page=True,
                     errback=self.errback,
+                    playwright_context_kwargs=dict(
+                        ignore_https_errors=True,
+                    )
                 )
             )
 

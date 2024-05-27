@@ -41,7 +41,7 @@ class UniversitiesCrawlerSpiderMiddleware:
         # (from other spider middleware) raises an exception.
 
         # Should return either None or an iterable of Request or item objects.
-        pass
+        return None
 
     def process_start_requests(self, start_requests, spider):
         # Called with the start requests of the spider, and works
@@ -97,7 +97,7 @@ class UniversitiesCrawlerDownloaderMiddleware:
         # - return None: continue processing this exception
         # - return a Response object: stops process_exception() chain
         # - return a Request object: stops process_exception() chain
-        pass
+        return None
 
     def spider_opened(self, spider):
         spider.logger.info("Spider opened: %s" % spider.name)

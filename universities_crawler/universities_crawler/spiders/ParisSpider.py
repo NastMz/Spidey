@@ -26,6 +26,9 @@ class ParisSpider(scrapy.Spider):
                     PageMethod("wait_for_selector", "div.search-resuts"),
                 ],
                 errback=self.errback,
+                playwright_context_kwargs=dict(
+                    ignore_https_errors=True,
+                )
             ),
             callback=self.parse_search_page
         )
@@ -43,6 +46,9 @@ class ParisSpider(scrapy.Spider):
                     playwright=True,
                     playwright_include_page=True,
                     errback=self.errback,
+                    playwright_context_kwargs=dict(
+                        ignore_https_errors=True,
+                    )
                 )
             )
 

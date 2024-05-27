@@ -27,6 +27,9 @@ class MelbourneSpider(scrapy.Spider):
                     PageMethod("click", "div#search-tabs > ul > li:nth-child(4)"),
                 ],
                 errback=self.errback,
+                playwright_context_kwargs=dict(
+                    ignore_https_errors=True,
+                )
             ),
             callback=self.parse_search_page
         )
@@ -44,6 +47,9 @@ class MelbourneSpider(scrapy.Spider):
                     playwright=True,
                     playwright_include_page=True,
                     errback=self.errback,
+                    playwright_context_kwargs=dict(
+                        ignore_https_errors=True,
+                    )
                 )
             )
 
