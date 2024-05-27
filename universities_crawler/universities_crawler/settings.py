@@ -14,7 +14,7 @@ NEWSPIDER_MODULE = "universities_crawler.spiders"
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-USER_AGENT = "Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.93 Safari/537.36"
+USER_AGENT = "Mozilla/5.0 (X11; Linux aarch64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/73.0.3683.86 Chrome/73.0.3683.86 Safari/537.36"
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
@@ -103,6 +103,6 @@ PLAYWRIGHT_BROWSER_TYPE = "firefox"
 
 PLAYWRIGHT_DEFAULT_NAVIGATION_TIMEOUT = 120 * 1000  # 2 minutes
 
-# PLAYWRIGHT_LAUNCH_OPTIONS = {
-#      "headless": False
-# }
+PLAYWRIGHT_LAUNCH_OPTIONS = {
+     "headless": False
+}
