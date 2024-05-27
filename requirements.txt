@@ -1,3 +1,9 @@
 scrapy-playwright
 pandas
 pdfplumber
+bertopic
+nltk
+Flask
+joblib
+langdetect
+deep-translator

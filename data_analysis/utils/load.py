@@ -10,6 +10,7 @@ def load_json_data(folder_path):
     for file in files:
         if file.endswith('.json'):
             file_path = os.path.join(folder_path, file)
+            print(f"Loading data from file {file_path}")
             data = pd.read_json(file_path)
             df = pd.concat([df, data], ignore_index=True)
 
@@ -24,7 +25,7 @@ def load_pdf_data(folder_path, university_dict):
             if file.endswith('.pdf'):
                 file_path = os.path.join(root, file)
                 try:
-                    print(f"Processing file {file_path}")
+                    print(f"Loading data from file {file_path}")
                     with pdfplumber.open(file_path) as pdf:
                         content = ""
                         for page in pdf.pages:
@@ -48,3 +49,14 @@ def load_pdf_data(folder_path, university_dict):
     data = pd.DataFrame(data_list, columns=['university', 'title', 'content', 'country'])
 
     return data
+
+
+def load_file_content(file_path):
+    try:
+        with open(file_path, 'r', encoding='utf-8') as file:
+                content = file.read()
+            
+        return content
+    except Exception as e:
+        print(f"Error al leer el archivo: {e}")
+        return None
