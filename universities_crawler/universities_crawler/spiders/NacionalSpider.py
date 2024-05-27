@@ -1,5 +1,4 @@
 import os
-import secrets
 
 import scrapy
 from scrapy_playwright.page import PageMethod
