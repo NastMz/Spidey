@@ -103,6 +103,6 @@ PLAYWRIGHT_BROWSER_TYPE = "firefox"
 
 PLAYWRIGHT_DEFAULT_NAVIGATION_TIMEOUT = 120 * 1000  # 2 minutes
 
-PLAYWRIGHT_LAUNCH_OPTIONS = {
-     "headless": False
-}
+# PLAYWRIGHT_LAUNCH_OPTIONS = {
+#     "headless": False
+# }
