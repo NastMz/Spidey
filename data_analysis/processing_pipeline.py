@@ -25,6 +25,7 @@ def load_data():
         'andes': {'name': 'Universidad de los Andes', 'country': 'Colombia'},
         'campinas': {'name': 'Universidad de Campinas', 'country': 'Brasil'},
         'cundinamarca': {'name': 'Universidad de Cundinamarca', 'country': 'Colombia'},
+        'cambridge': {'name': 'University of Cambridge', 'country': 'United Kingdom'},
         # Add more universities as needed
     }
 
