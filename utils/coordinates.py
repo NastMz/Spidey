@@ -9,4 +9,3 @@ def get_country_coordinates(country_name):
     else:
         print(f"No se encontraron coordenadas para el país: {country_name}")
         return None
-

@@ -43,3 +43,8 @@ def get_map_data():
 @data_bp.route('/charts/treemap', methods=['GET'])
 def get_treemap_data():
     return jsonify(StatisticsService.get_treemap_data())
+
+
+@data_bp.route('/charts/languages', methods=['GET'])
+def get_languages_data():
+    return jsonify(StatisticsService.get_languages())

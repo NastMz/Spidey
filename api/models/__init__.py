@@ -6,3 +6,5 @@ from .data_list_model import *
 from .indicartors_model import *
 from .pie_data_model import *
 from .tree_map_data_model import *
+from .topic_data_model import *
+from .languages_data_model import *

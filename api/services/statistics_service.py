@@ -2,7 +2,14 @@ import json
 
 import pandas as pd
 
-from api.models import BarDataModel, DataListModel, PieDataModel, MapDataModel, TreeMapDataModel
+from api.models import (
+    BarDataModel,
+    DataListModel,
+    PieDataModel,
+    MapDataModel,
+    TreeMapDataModel,
+    LanguagesDataModel
+)
 
 
 class StatisticsService:
@@ -94,6 +101,26 @@ class StatisticsService:
                 value=total_count,
                 children=treemap_data_dicts
             )]
+        )
+
+        return data.to_dict()
+
+    @staticmethod
+    def get_languages():
+        df = pd.read_csv('universities_data.csv')
+
+        language_counts = df['language'].value_counts()
+
+        spanish_count = language_counts.get('es', 0)
+        english_count = language_counts.get('en', 0)
+
+        language_data = [
+            LanguagesDataModel(language='Spanish', count=int(spanish_count)).to_dict(),
+            LanguagesDataModel(language='English', count=int(english_count)).to_dict()
+        ]
+
+        data = DataListModel(
+            data=language_data
         )
 
         return data.to_dict()
