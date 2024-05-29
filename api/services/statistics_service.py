@@ -26,14 +26,14 @@ class StatisticsService:
     def get_pie_data():
         df = pd.read_csv('universities_data.csv')
 
-        universities_per_country = df.groupby('country')['university'].nunique()
+        universities_per_continent = df.groupby('continent')['university'].nunique()
 
         pie_data = [
             PieDataModel(
                 value=int(row),
                 name=str(index)
             )
-            for index, row in universities_per_country.items()
+            for index, row in universities_per_continent.items()
         ]
 
         pie_data_dicts = [data.to_dict() for data in pie_data]
