@@ -26,13 +26,19 @@ def load_data():
         'campinas': {'name': 'Universidad de Campinas', 'country': 'Brasil'},
         'cundinamarca': {'name': 'Universidad de Cundinamarca', 'country': 'Colombia'},
         'cambridge': {'name': 'University of Cambridge', 'country': 'United Kingdom'},
+        'berlin': {'name': 'Free University of Berlin', 'country': 'Germany'},
+        'granada': {'name': 'University of Granada', 'country': 'Spain'},
+        'tokyo': {'name': 'The University of Tokyo', 'country': 'Japan'},
+        'tsighua': {'name': 'Tsinghua University', 'country': 'China'},
+        'singapure': {'name': 'National University of Singapore', 'country': 'Singapore'},
+        'toronto': {'name': 'University of Toronto', 'country': 'Canada'},
         # Add more universities as needed
     }
 
     json_data = load_json_data('universities_crawler/crawled_files/json')
     pdf_data = load_pdf_data('universities_crawler/crawled_files/pdf', university_pdf_dict)
     df = pd.concat([json_data, pdf_data], ignore_index=True)
-    df.to_csv('universities_data.csv', index=False)
+    df.to_csv('universities_data.csv', index=False, escapechar='\\')
     logging.info('Data loaded successfully.')
     return df
 
@@ -157,3 +163,4 @@ def get_metadata():
         raise ValueError("Failed to create metadata")
 
     logging.info('Metadata created successfully.')
+    return metadata

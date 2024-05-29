@@ -42,6 +42,8 @@ def generate_csv_metadata(csv_file_path):
         records_per_university = df['university'].value_counts().to_dict()
         records_per_country = df['country'].value_counts().to_dict()
 
+        universities_per_country = df.groupby('country')['university'].nunique().to_dict()
+
         metadata = {
             'num_records': num_rows,
             'num_universities': num_unique_universities,
@@ -54,7 +56,10 @@ def generate_csv_metadata(csv_file_path):
             metadata[f"num_records_{space_regex.sub('_', university.lower())}"] = count
 
         for country, count in records_per_country.items():
-            metadata[f"num_records_{space_regex.sub('_',country.lower())}"] = count
+            metadata[f"num_records_{space_regex.sub('_', country.lower())}"] = count
+
+        for country, count in universities_per_country.items():
+            metadata[f"num_universities_{space_regex.sub('_', country.lower())}"] = count
 
         return metadata
 

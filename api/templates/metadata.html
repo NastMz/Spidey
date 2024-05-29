@@ -1,0 +1,23 @@
+{% macro metadata_section() %}
+<section id="metadata">
+    <section class="indicators">
+        <div class="indicator">
+            <p>Indicador 1</p>
+        </div>
+        <div class="indicator">
+            <p>Indicador 2</p>
+        </div>
+        <div class="indicator">
+            <p>Indicador 3</p>
+        </div>
+    </section>
+    <section class="visualization-container">
+        <div id="map"></div>
+        <div id="pie-chart-container"></div>
+        <div id="bar-chart-container"></div>
+    </section>
+    <button id="scroll-down-btn" onclick="scrollUpDown()">
+        <i id="scroll-icon" class="fa-solid fa-caret-down"></i>
+    </button>
+</section>
+{% endmacro %}

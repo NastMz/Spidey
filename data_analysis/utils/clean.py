@@ -21,18 +21,15 @@ def create_corpus_from_csv(csv_file_path, target_language='en'):
             raise ValueError("El CSV no contiene una columna llamada 'content'.")
 
         translated_contents = []
-        for text in df['content'].dropna():
+        texts = df['content'].dropna()
+        for i, text in enumerate(texts):
             text_segments = split_text(text, limit=3000)
-            for segment in text_segments:
-                # Detect the language of the text segment
-                detected_language = detect(segment)
-                # If the detected language is not the target language, translate the text
-                if detected_language != target_language:
-                    translated_text = GoogleTranslator(source='auto', target=target_language).translate(segment)
-                    translated_contents.append(translated_text)
-                else:
-                    # If the detected language is the target language, add the original text
-                    translated_contents.append(segment)
+            print(f'Translating text {i+1}/{len(texts)}...')
+            text_len = len(text_segments)
+            for j, segment in enumerate(text_segments):
+                print(f"Translating segment {j+1}/{text_len}")
+                translated_text = GoogleTranslator(source='auto', target=target_language).translate(segment)
+                translated_contents.append(translated_text)
 
         corpus = ' '.join(translated_contents)
 

@@ -1,0 +1,27 @@
+{% from 'metadata.html' import metadata_section %}
+{% from 'bag_of_words.html' import bag_of_words_section %}
+{% from 'topics.html' import topics_section %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Indicadores y Gráficas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles_dashboard.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Aclonica&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>Transformación Digital en las Universidades del Mundo</h1>
+    <main id="content">
+        {{ metadata_section() }}
+        {{ bag_of_words_section() }}
+        {{ topics_section() }}
+    </main>
+    <script src="https://kit.fontawesome.com/d12a234776.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>
