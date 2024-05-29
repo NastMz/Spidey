@@ -1,7 +1,5 @@
 from flask import Flask
-from api.data_routes import data_bp
-from api.model_routes import model_bp
-from api.dashboard_routes import dashboard_bp
+from api.controllers import data_bp, model_bp, dashboard_bp
 
 
 def create_app():
