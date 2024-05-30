@@ -7,8 +7,6 @@ class TopicService:
     def get_topics():
         all_topics = model.get_topics()
 
-        topics_data = []
-
         topics_data = [
             TopicDataModel(
                 words=[

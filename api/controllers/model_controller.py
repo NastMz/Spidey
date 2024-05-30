@@ -15,6 +15,6 @@ def predict():
     return jsonify({"message": "Predicción realizada exitosamente"})
 
 
-@model_bp.route('/topics', method=['GET'])
+@model_bp.route('/topics', methods=['GET'])
 def get_all_topics():
     return jsonify(TopicService.get_topics())
