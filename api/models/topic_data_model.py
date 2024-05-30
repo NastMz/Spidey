@@ -12,3 +12,9 @@ class TopicWordModel(BaseModel):
 class TopicDataModel(BaseModel):
     topic: str
     words: list
+
+
+@dataclass
+class PredictedTopicModel(BaseModel):
+    topic: str
+    probability: float
