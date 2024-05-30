@@ -43,8 +43,8 @@ class TopicService:
         topic, prob = model.transform(text)
 
         data = PredictedTopicModel(
-            topic=topic[0],
-            probability=prob[0]
+            topic=str(topic[0]),
+            probability=float(prob[0])
         )
 
         return data.to_dict()
