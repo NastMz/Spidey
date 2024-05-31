@@ -7,7 +7,7 @@ import joblib
 from data_analysis.utils.load import load_json_data, load_pdf_data
 from data_analysis.utils.clean import create_corpus_from_csv, clean_corpus
 from data_analysis.utils.pre_processing import remove_stopwords_from_corpus, corpus_word_tokenize
-from data_analysis.utils.processing import train_model, create_bag_of_words, generate_csv_metadata
+from data_analysis.utils.processing import train_model, create_bag_of_words, generate_csv_metadata, create_topic_visualization
 
 logging.basicConfig(filename='app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
@@ -130,8 +130,10 @@ def train_model_step():
         raise FileNotFoundError("tokenized.txt does not exist. Run tokenize first.")
 
     model, topics, probabilities = train_model('tokenized.txt')
-    model_filename = 'trained_model.joblib'
-    joblib.dump(model, model_filename)
+
+    model_filename = 'trained_model.bertopic'
+
+    model.save(model_filename)
 
     logging.info('Model trained successfully.')
 
@@ -164,3 +166,17 @@ def get_metadata():
 
     logging.info('Metadata created successfully.')
     return metadata
+
+
+def get_vizualition_data():
+    logging.info('Generating visualization data...')
+    if not os.path.exists('trained_model.bertopic'):
+        raise FileNotFoundError("trained_model.bertopic does not exist. Run train_model first.")
+    
+    df = create_topic_visualization('trained_model.bertopic')
+
+    logging.info('Visualization data created successfully.')
+
+    df.to_csv("topic_visualization_data.csv", index=False)
+
+    return df

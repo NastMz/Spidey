@@ -7,7 +7,8 @@ from data_analysis.processing_pipeline import (
     tokenize_step,
     train_model_step,
     create_bag_of_words_step,
-    get_metadata
+    get_metadata,
+    get_vizualition_data
 )
 
 
@@ -38,12 +39,14 @@ def main(steps):
     if 'metadata' in steps:
         get_metadata()
 
+    if 'visualization_data' in steps:
+        get_vizualition_data()
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Selecciona las fases del proceso a ejecutar")
     parser.add_argument('--steps', nargs='+',
                         choices=['load_data', 'create_corpus', 'clean_corpus', 'remove_stopwords', 'tokenize',
-                                 'create_bag_of_words', 'train_model', 'metadata'],
+                                 'create_bag_of_words', 'train_model', 'metadata', 'visualization_data'],
                         required=True,
                         help='Fases del proceso a ejecutar')
     args = parser.parse_args()

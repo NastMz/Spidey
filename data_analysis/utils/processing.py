@@ -1,8 +1,12 @@
 import re
 from collections import Counter
 
+import numpy as np
 import pandas as pd
+from umap import UMAP
 from bertopic import BERTopic
+from sklearn.preprocessing import MinMaxScaler
+
 
 from data_analysis.utils.load import load_file_content
 
@@ -66,3 +70,35 @@ def generate_csv_metadata(csv_file_path):
     except Exception as e:
         print(f"Error al generar metadatos del CSV: {e}")
         return None
+
+
+def create_topic_visualization(model_path):
+    # Cargar el modelo BERTopic entrenado
+    topic_model = BERTopic.load("trained_model.bertopic")
+
+    # Obtener información de los tópicos
+    topic_info = topic_model.get_topic_info()
+    topic_list = sorted(topic_info.Topic.to_list())
+    frequencies = [topic_model.topic_sizes_[topic] for topic in topic_list if topic != -1]
+    words = [" | ".join([word[0] for word in topic_model.get_topic(topic)[:5]]) for topic in topic_list if topic != -1]
+
+    # Obtener embeddings de los tópicos y reducir la dimensionalidad con UMAP
+    embeddings = topic_model.topic_embeddings_
+    umap_model = UMAP(n_neighbors=15, n_components=2, metric='cosine')
+    umap_embeddings = umap_model.fit_transform(embeddings)
+
+    # Filtrar tópicos y embeddings para excluir el tópico -1
+    filtered_topic_list = [topic for topic in topic_list if topic != -1]
+    filtered_umap_embeddings = umap_embeddings[1:]  # Excluir el primer elemento (tópico -1)
+
+    # Crear un DataFrame para exportar los datos
+    df = pd.DataFrame({
+        "x": filtered_umap_embeddings[:, 0],
+        "y": filtered_umap_embeddings[:, 1],
+        "Topic": filtered_topic_list,
+        "Words": words,
+        "Size": frequencies
+    })
+
+    # Guardar los datos en un archivo CSV
+    return df
