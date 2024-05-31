@@ -1,0 +1,44 @@
+#worldmap {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    background-image: url("/static/img/fondo.webp");
+    background-size: cover;
+}
+
+.title-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0);
+    padding: 0 2rem;
+}
+
+h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 6rem;
+    background: linear-gradient(90deg, #ff6a00, #ee0979);
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: gradientAnimation 3s infinite;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0 50%;
+    }
+}
+
+#globe-container {
+    width: 100%;
+    height: 100%;
+}

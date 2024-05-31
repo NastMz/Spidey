@@ -1,0 +1,36 @@
+.indicators {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+.indicator {
+    width: 12rem;
+    color: var(--color-surface-100);
+    background-color: var(--color-primary-200);
+}
+
+.indicator i {
+    font-size: 2em;
+}
+
+.indicator-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.indicator-number {
+    font-size: 3em;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.indicator-label {
+    font-size: 1rem;
+    color: var(--color-surface-200);
+    margin-top: 0;
+    font-weight: 700;
+}

@@ -1,27 +1,63 @@
 {% from 'metadata.html' import metadata_section %}
 {% from 'bag_of_words.html' import bag_of_words_section %}
 {% from 'topics.html' import topics_section %}
+{% from 'worldmap.html' import worldmap_section %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Indicadores y Gráficas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/globals.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles_dashboard.css') }}">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/worldmap_styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/indicators_styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/charts_styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/map_styles.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+    <!--<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Aclonica&display=swap" rel="stylesheet">-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Aclonica&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css"/>
 </head>
 <body>
-    <h1>Transformación Digital en las Universidades del Mundo</h1>
-    <main id="content">
-        {{ metadata_section() }}
-        {{ bag_of_words_section() }}
-        {{ topics_section() }}
-    </main>
-    <script src="https://kit.fontawesome.com/d12a234776.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+<header>
+    <nav>
+        <ul>
+            <li>
+                <a href="#worldmap">Home</a>
+            </li>
+            <li>
+                <a href="#metadata">Metadata</a>
+            </li>
+            <li>
+                <a href="#bag-of-words">Bag of words</a>
+            </li>
+            <li>Topics</li>
+            <li>Playground</li>
+        </ul>
+    </nav>
+</header>
+<main id="content">
+    {{ worldmap_section() }}
+    {{ metadata_section() }}
+    {{ bag_of_words_section() }}
+    {{ topics_section() }}
+</main>
+<script src="https://kit.fontawesome.com/d12a234776.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+<script src="{{ url_for('static', filename='js/wordcloud.js') }}"></script>
+<script src="{{ url_for('static', filename='js/worldmap.js') }}"></script>
+<script src="{{ url_for('static', filename='js/indicators.js') }}"></script>
+<script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+<script src="{{ url_for('static', filename='js/map.js') }}"></script>
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
 </body>
 </html>

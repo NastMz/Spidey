@@ -1,23 +1,54 @@
 {% macro metadata_section() %}
 <section id="metadata">
-    <section class="indicators">
-        <div class="indicator">
-            <p>Indicador 1</p>
+    <section class="indicators-and-charts">
+        <div class="indicators">
+            <div class="card indicator">
+                <div class="indicator-content">
+                    <i class="fa-solid fa-earth-americas"></i>
+                    <p><span id="indicator-countries" class="indicator-number">0</span></p>
+                </div>
+                <p class="indicator-label">Países</p>
+            </div>
+            <div class="card indicator">
+                <div class="indicator-content">
+                    <i class="fa-solid fa-building"></i>
+                    <p><span id="indicator-universities" class="indicator-number">0</span></p>
+                </div>
+                <p class="indicator-label">Universidades</p>
+            </div>
+            <div class="card indicator">
+                <div class="indicator-content">
+                    <i class="fa-solid fa-file-lines"></i>
+                    <p><span id="indicator-docs" class="indicator-number">0</span></p>
+                </div>
+                <p class="indicator-label">Documentos</p>
+            </div>
+            <!--<div class="card indicator">
+                <div class="indicator-content">
+                    <i class="fa-solid fa-language"></i>
+                    <p><span id="indicator-languages" class="indicator-number">0</span></p>
+                </div>
+                <p class="indicator-label">Idiomas</p>
+            </div>-->
         </div>
-        <div class="indicator">
-            <p>Indicador 2</p>
+
+        <div class="charts">
+            <div class="chart-container">
+                <div id="half-doughnut-container" class="chart half-doughnut"></div>
+            </div>
+            <div class="chart-container">
+                <div id="pie-chart-container" class="chart pie-chart"></div>
+            </div>
+            <div class="chart-container">
+                <div id="bar-chart-container" class="chart bar-chart"></div>
+            </div>
         </div>
-        <div class="indicator">
-            <p>Indicador 3</p>
-        </div>
-    </section>
-    <section class="visualization-container">
-        <div id="map"></div>
-        <div id="pie-chart-container"></div>
-        <div id="bar-chart-container"></div>
     </section>
     <button id="scroll-down-btn" onclick="scrollUpDown()">
         <i id="scroll-icon" class="fa-solid fa-caret-down"></i>
     </button>
+</section>
+<section class="visualization-container">
+    <div id="map" class="map"></div>
 </section>
 {% endmacro %}
