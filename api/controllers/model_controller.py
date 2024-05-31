@@ -28,4 +28,4 @@ def get_topic(topic_id):
 
 @model_bp.route('/intertopic', methods=['GET'])
 def get_intertopic_data():
-    return jsonify(TopicService.get_vizualization_data())
+    return jsonify(TopicService.get_visualization_data())
