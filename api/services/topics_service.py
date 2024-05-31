@@ -52,21 +52,21 @@ class TopicService:
         return data.to_dict()
 
     @staticmethod
-    def get_vizualization_data():
+    def get_visualization_data():
         df = pd.read_csv('topic_visualization_data.csv')
 
-        vizualization_data = [
+        visualization_data = [
             IntertopicDistance(
-                coordinates=[item['x'], item['y']],
-                topic=item['Topic'],
-                words=item['Words'],
-                size=item['Size']
-            ).to_dic()
-            for item in df
+                coordinates=[row['x'], row['y']],
+                topic=row['Topic'],
+                words=row['Words'],
+                size=int(row['Size'])
+            ).to_dict()
+            for index, row in df.iterrows()
         ]
         
         data = DataListModel(
-            data=vizualization_data
+            data=visualization_data
         )
 
         return data.to_dict()
