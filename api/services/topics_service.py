@@ -1,5 +1,7 @@
+import pandas as pd
+
 from api.config import model
-from api.models import TopicWordModel, TopicDataModel, DataListModel, PredictedTopicModel
+from api.models import TopicWordModel, TopicDataModel, DataListModel, PredictedTopicModel, IntertopicDistance
 
 
 class TopicService:
@@ -45,6 +47,26 @@ class TopicService:
         data = PredictedTopicModel(
             topic=str(topic[0]),
             probability=float(prob[0])
+        )
+
+        return data.to_dict()
+
+    @staticmethod
+    def get_vizualization_data():
+        df = pd.read_csv('topic_visualization_data.csv')
+
+        vizualization_data = [
+            IntertopicDistance(
+                coordinates=[item['x'], item['y']],
+                topic=item['Topic'],
+                words=item['Words'],
+                size=item['Size']
+            ).to_dic()
+            for item in df
+        ]
+        
+        data = DataListModel(
+            data=vizualization_data
         )
 
         return data.to_dict()

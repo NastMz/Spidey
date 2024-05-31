@@ -18,3 +18,11 @@ class TopicDataModel(BaseModel):
 class PredictedTopicModel(BaseModel):
     topic: str
     probability: float
+
+
+@dataclass
+class IntertopicDistance(BaseModel):
+    coordinates: list
+    topic: str
+    words: list
+    size: int
