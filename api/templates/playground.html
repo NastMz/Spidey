@@ -1,0 +1,21 @@
+{% macro playground() %}
+<section id="playground">
+    <div class="container">
+        <h1>
+            You can predict topics
+        </h1>
+        <div class="chart-container">
+            <form id="textForm" class="form">
+                <label for="textInput" class="label">Enter your text:</label>
+                <textarea id="textInput" name="textInput" class="textarea" rows="4" cols="50"></textarea>
+                <button type="submit" class="button">Submit</button>
+            </form>
+
+            <div id="response" class="response">
+                <p class="response-item">Probability: <span id="probability" class="response-value"></span></p>
+                <p class="response-item">Topic: <span id="topic" class="response-value"></span></p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endmacro %}

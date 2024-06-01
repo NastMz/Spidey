@@ -11,8 +11,8 @@ function updatePieChart() {
             var pieChart = echarts.init(pieChartDom);
             var pieOption = {
                 title: {
-                    text: 'Universidades por País',
-                    subtext: 'Distribución',
+                    text: 'Universities by Continent',
+                    subtext: 'Distribution',
                     left: 'center',
                     textStyle: {
                         color: '#fff'
@@ -86,8 +86,8 @@ function updateBarChart() {
             var barChart = echarts.init(barChartDom);
             var barOption = {
                 title: {
-                    text: 'Documentos por Universidad',
-                    subtext: 'Top Universidades',
+                    text: 'Documents by University',
+                    subtext: '',
                     left: 'center',
                     textStyle: {
                         color: '#fff'
@@ -150,8 +150,8 @@ function updateHalfDoughnutChart() {
             var halfDoughnutChart = echarts.init(halfDoughnutDom);
             var halfDoughnutOption = {
                 title: {
-                    text: 'Distribución de Idiomas',
-                    subtext: 'Documentos por Idioma',
+                    text: 'Language Distribution',
+                    subtext: 'Documents by Language',
                     left: 'center',
                     textStyle: {
                         color: '#fff'

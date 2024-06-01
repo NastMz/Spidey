@@ -2,7 +2,7 @@
 {% from 'bag_of_words.html' import bag_of_words_section %}
 {% from 'topics.html' import topics_section %}
 {% from 'worldmap.html' import worldmap_section %}
-
+{% from 'playground.html' import playground %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/indicators_styles.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/charts_styles.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/map_styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/wordcloud_styles.css') }}">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
     <!--<link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,10 +36,17 @@
                 <a href="#metadata">Metadata</a>
             </li>
             <li>
+                <a href="#mapita">Locations</a>
+            </li>
+            <li>
                 <a href="#bag-of-words">Bag of words</a>
             </li>
-            <li>Topics</li>
-            <li>Playground</li>
+            <li>
+                <a href="#topics">Topics</a>
+            </li>
+            <li>
+                <a href="#playground">Playground</a>
+            </li>
         </ul>
     </nav>
 </header>
@@ -47,14 +55,19 @@
     {{ metadata_section() }}
     {{ bag_of_words_section() }}
     {{ topics_section() }}
+    {{ playground() }}
 </main>
 <script src="https://kit.fontawesome.com/d12a234776.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+<!--<script src="https://cdn.jsdelivr.net/npm/wordcloud@1.8.0/dist/wordcloud.min.js"></script>-->
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-cloud/1.2.5/d3.layout.cloud.js"></script>
 <script src="{{ url_for('static', filename='js/wordcloud.js') }}"></script>
 <script src="{{ url_for('static', filename='js/worldmap.js') }}"></script>
+<script src="{{ url_for('static', filename='js/topics.js') }}"></script>
 <script src="{{ url_for('static', filename='js/indicators.js') }}"></script>
 <script src="{{ url_for('static', filename='js/charts.js') }}"></script>
 <script src="{{ url_for('static', filename='js/map.js') }}"></script>

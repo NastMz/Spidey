@@ -29,4 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
     updateMap();
     countTotalWords();
     updateTreemap();
+    createWordCloud();
+    initialize();
+    updateInteropicChart();
 });

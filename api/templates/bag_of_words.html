@@ -1,14 +1,26 @@
 {% macro bag_of_words_section() %}
 <section id="bag-of-words">
-    <div class="indicators">
-        <div class="card indicator">
-            <div class="indicator-content">
-                <i class="fa-solid fa-earth-americas"></i>
-                <p><span id="indicator-countries" class="indicator-number">0</span></p>
+    <div class="indicators-and-charts">
+        <div class="indicators">
+            <div class="card indicator">
+                <div class="indicator-content">
+                    <i class="fa-solid fa-file-lines"></i>
+                    <p><span id="indicator-words" class="indicator-number">0</span></p>
+                </div>
+                <p class="indicator-label">Words</p>
             </div>
-            <p class="indicator-label">Palabras</p>
+        </div>
+        <div class="word">
+            <div class="chart-container" style="text-align: center;">
+                <h3 style="margin-bottom: 10px">Top 100 most frequent words</h3>
+                <div id="wordcloud-container">
+                    <svg id="wordcloud"></svg>
+                </div>
+            </div>
+            <div class="chart-container">
+                <div id="treemap-container"></div>
+            </div>
         </div>
     </div>
-    <div id="treemap-container" style="width: 100%; height: 400px;"></div>
 </section>
 {% endmacro %}

@@ -1,5 +1,27 @@
 {% macro topics_section() %}
-    <section id="topics">
-        <h2>Topics</h2>
-    </section>
+<section id="topics">
+    <div class="indicators-and-charts">
+        <div class="indicators">
+            <div class="card indicator">
+                <div class="indicator-content">
+                    <i class="fa-solid fa-file-lines"></i>
+                    <p><span id="indicator-topic" class="indicator-number">0</span></p>
+                </div>
+                <p class="indicator-label">Topics</p>
+            </div>
+        </div>
+        <div class="word">
+            <div class="chart-container">
+                <div class="select-container">
+                    <p style="margin-right: 15px; font-weight: 600">Select a topic to see the probability of the word</p>
+                    <select id="topicSelector"></select>
+                </div>
+                <div id="chart" style="width: 600px; height: 400px;"></div>
+            </div>
+            <div class="chart-container">
+                <div id="intertopic-container" style="height: 100%"></div>
+            </div>
+        </div>
+    </div>
+</section>
 {% endmacro %}

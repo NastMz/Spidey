@@ -56,6 +56,26 @@ nav > ul > li > a:hover {
     height: 90vh;
     display: flex;
 }
+#bag-of-words{
+    padding: 20px;
+    height: 90vh;
+    display: flex;
+}
+#topics{
+    padding: 20px;
+    height: 90vh;
+    display: flex;
+}
+#mapita{
+    padding: 20px;
+    height: 90vh;
+    display: flex;
+}
+#playground{
+    padding: 20px;
+    height: 90vh;
+    display: flex;
+}
 
 .indicators-and-charts {
     display: flex;
@@ -79,4 +99,18 @@ nav > ul > li > a:hover {
 #scroll-down-btn i {
     font-size: 40px;
     color: var(--color-primary-100);
+}
+.select-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#topicSelector {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: none;
+    background-color: var(--color-surface-300);
+    color: white;
 }
